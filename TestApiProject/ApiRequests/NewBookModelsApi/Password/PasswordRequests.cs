@@ -6,8 +6,8 @@ namespace TestApiProject.ApiRequests.NewBookModelsApi.Password
     {
         public string SendRequestChangePassword(PasswordModel passwordModel)
         {
-            var response = new RestRequestBuilder(NewBookModelsUri.GetBaseUrl("1"),
-                NewBookModelsUri.Password.Change())
+            var response = new RestRequestBuilder(NewBookModelsUrl.GetBaseUrl("1"),
+                NewBookModelsUrl.Password.Change())
                 .AddParametersAsJsonRowInRequestBody(passwordModel)
                 .AddMethodType(RestSharp.Method.POST)
                 .AddRequestFormat(RestSharp.DataFormat.Json)

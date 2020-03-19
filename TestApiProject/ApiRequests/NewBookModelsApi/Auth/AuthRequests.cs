@@ -9,7 +9,7 @@ namespace TestApiProject.ApiRequests.NewBookModelsApi.Auth
     {
         public ClientAuthModel SendRequestLoginPost(ClientSignInModel clientSignUpModel)
         {
-            var response = new RestRequestBuilder(NewBookModelsUri.GetBaseUrl("1"), NewBookModelsUri.Auth.SingIn())
+            var response = new RestRequestBuilder(NewBookModelsUrl.GetBaseUrl("1"), NewBookModelsUrl.Auth.SingIn())
                 .AddParametersAsJsonRowInRequestBody(clientSignUpModel)
                 .AddMethodType(Method.POST)
                 .AddHeader("content-type", "application/json")
@@ -21,7 +21,7 @@ namespace TestApiProject.ApiRequests.NewBookModelsApi.Auth
 
         public ClientAuthModel SendRequestSignUpPost(ClientSignUpModel clientSignUpModel)
         {
-            var resp = new RestRequestBuilder(NewBookModelsUri.GetBaseUrl("1"), NewBookModelsUri.Auth.Client_SignUp())
+            var resp = new RestRequestBuilder(NewBookModelsUrl.GetBaseUrl("1"), NewBookModelsUrl.Auth.Client_SignUp())
                 .AddParametersAsJsonRowInRequestBody(clientSignUpModel)
                 .AddMethodType(Method.POST)
                 .AddHeader("content-type", "application/json")

@@ -62,16 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiRequests\Models\AuthToken.cs" />
+    <Compile Include="ApiRequests\Models\ChangeEmailModel.cs" />
     <Compile Include="ApiRequests\Models\ClientAuthModel.cs" />
     <Compile Include="ApiRequests\Models\ClientProfileModel.cs" />
-    <Compile Include="ApiRequests\Models\ClientSignUpModel.cs" />
+    <Compile Include="ApiRequests\Models\ClientSignInModel.cs" />
     <Compile Include="ApiRequests\Models\UserModel.cs" />
     <Compile Include="ApiRequests\NewBookModelsApi\Auth\AuthRequests.cs" />
-    <Compile Include="ApiRequests\NewBookModelsApi\Auth\ClientSignUpModel.cs" />
+    <Compile Include="ApiRequests\Models\ClientSignUpModel.cs" />
     <Compile Include="ApiRequests\NewBookModelsApi\Client\ClientRequest.cs" />
     <Compile Include="ApiRequests\Models\PasswordModel.cs" />
     <Compile Include="ApiRequests\NewBookModelsApi\Password\PasswordRequests.cs" />
-    <Compile Include="ApiRequests\Url\NewBookModelsUri.cs" />
+    <Compile Include="ApiRequests\Url\NewBookModelsUrl.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestRequestBuider.cs" />

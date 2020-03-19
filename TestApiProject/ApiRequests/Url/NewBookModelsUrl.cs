@@ -1,6 +1,6 @@
 ﻿namespace TestApiProject.ApiRequests.Url
 {
-    public class NewBookModelsUri
+    public class NewBookModelsUrl
     {
         public static string GetBaseUrl(string apiVersion = null)
         {

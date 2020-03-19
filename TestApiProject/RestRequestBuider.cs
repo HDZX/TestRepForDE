@@ -22,13 +22,6 @@ namespace TestApiProject
             return this;
         }
 
-        public RestRequestBuilder AddFile(string filePath)
-        {
-            _request.AddFile("file", filePath);
-
-            return this;
-        }
-
         public RestRequestBuilder AddHeader(string key, string value)
         {
             _request.AddHeader(key, value);
