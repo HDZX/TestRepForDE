@@ -11,7 +11,7 @@ using TestApiProject.ApiRequests.NewBookModelsApi.Password;
 namespace TestApiProject.Tests
 {
     [TestFixture]
-    class TestLoginByApi
+    class TestsUsingApi
     {
         const string USER_EMAIL = "qweasdasd@qwe.qwea";
         const string PASSWORD = "123qweQWE!";
@@ -19,16 +19,19 @@ namespace TestApiProject.Tests
         [Test]
         public void CheckThatLoginUsingTokenFromApiInBrowserIsPossible()
         {
-            var response = new AuthRequests().SendRequestLoginPost(new ClientSignInModel
+            Context.Token = new AuthRequests().SendRequestSignUpPost(new ClientSignUpModel
             {
-                Email = USER_EMAIL,
-                Password = PASSWORD
-            });
+                Email = USER_EMAIL + DateTime.Now.ToString("ddmmyyyyhhmmss"),
+                Password = PASSWORD,
+                FirstName = "sdfsadfsf",
+                LastName = "asdadasdsad",
+                PhoneNumber = "1231231231"
+            }).TokenData.Token;
 
             var driver = new ChromeDriver();
             IJavaScriptExecutor js = driver;
             driver.Navigate().GoToUrl("https://newbookmodels.com/auth/signin");
-            js.ExecuteScript($"localStorage.setItem('access_token','{response.TokenData.Token}');");
+            js.ExecuteScript($"localStorage.setItem('access_token','{Context.Token}');");
             driver.Navigate().GoToUrl("https://newbookmodels.com/account-settings/account-info/edit");
             Thread.Sleep(3000);
             var result = driver.FindElement(By.CssSelector("div[class^='Avatar'] > div[class^='AvatarClient']")).Displayed;
