@@ -30,5 +30,15 @@
                 return _controller + "/client/signup/";
             }
         }
+
+        public static class Password
+        {
+            private static string _controller = "password";
+
+            public static string Change()
+            {
+                return _controller + "/change/";
+            }
+        }
     }
 }

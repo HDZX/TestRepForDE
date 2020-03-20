@@ -66,10 +66,13 @@
     <Compile Include="ApiRequests\Models\ClientAuthModel.cs" />
     <Compile Include="ApiRequests\Models\ClientProfileModel.cs" />
     <Compile Include="ApiRequests\Models\ClientSignInModel.cs" />
+    <Compile Include="ApiRequests\Models\PasswordModel.cs" />
     <Compile Include="ApiRequests\Models\UserModel.cs" />
     <Compile Include="ApiRequests\NewBookModelsApi\Auth\AuthRequests.cs" />
     <Compile Include="ApiRequests\Models\ClientSignUpModel.cs" />
+    <Compile Include="ApiRequests\NewBookModelsApi\Password\PasswordRequests.cs" />
     <Compile Include="ApiRequests\Url\NewBookModelsUrl.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestRequestBuider.cs" />
     <Compile Include="Tests\TestsUsingApi.cs" />
@@ -79,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiRequests\NewBookModelsApi\Client\" />
-    <Folder Include="ApiRequests\NewBookModelsApi\Password\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
