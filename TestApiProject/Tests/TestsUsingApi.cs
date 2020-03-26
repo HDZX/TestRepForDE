@@ -31,7 +31,6 @@ namespace TestApiProject.Tests
             {
                 Assert.That(client.User.Id != null && client.User.Id != string.Empty);
                 Assert.IsTrue(client.User.Email == expectedEmail);
-
             });
         }
 
