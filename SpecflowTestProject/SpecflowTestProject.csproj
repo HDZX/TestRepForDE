@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C117230-6BF5-4F48-8FC2-B5AE8C8C52BD}</ProjectGuid>
+    <ProjectGuid>{663A4906-8EE3-4240-9580-678C08977B79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApiProject</RootNamespace>
-    <AssemblyName>TestApiProject</AssemblyName>
+    <RootNamespace>SpecflowTestProject</RootNamespace>
+    <AssemblyName>SpecflowTestProject</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -46,9 +46,6 @@
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.10.1\lib\net452\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -57,7 +54,6 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="TechTalk.SpecFlow, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.2.4.1\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
@@ -69,40 +65,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiRequests\Models\AuthToken.cs" />
-    <Compile Include="ApiRequests\Models\ChangeEmailModel.cs" />
-    <Compile Include="ApiRequests\Models\ClientAuthModel.cs" />
-    <Compile Include="ApiRequests\Models\ClientProfileModel.cs" />
-    <Compile Include="ApiRequests\Models\ClientSignInModel.cs" />
-    <Compile Include="ApiRequests\Models\PasswordModel.cs" />
-    <Compile Include="ApiRequests\Models\UserModel.cs" />
-    <Compile Include="ApiRequests\NewBookModelsApi\Auth\AuthRequests.cs" />
-    <Compile Include="ApiRequests\Models\ClientSignUpModel.cs" />
-    <Compile Include="ApiRequests\NewBookModelsApi\Password\PasswordRequests.cs" />
-    <Compile Include="ApiRequests\Url\NewBookModelsUrl.cs" />
-    <Compile Include="Context.cs" />
+    <Compile Include="Hooks.cs" />
+    <Compile Include="NewBookModelsPOM\ClientSignUp.cs" />
+    <Compile Include="NewBookModelsPOM\SignInPage.cs" />
+    <Compile Include="Tests\Login.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\LoginSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestRequestBuider.cs" />
-    <Compile Include="Tests\TestsUsingApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Tests\Login.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ApiRequests\NewBookModelsApi\Client\" />
+    <ProjectReference Include="..\TestApiProject\TestApiProject.csproj">
+      <Project>{8C117230-6BF5-4F48-8FC2-B5AE8C8C52BD}</Project>
+      <Name>TestApiProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('..\packages\SpecFlow.2.4.1\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.2.4.1\build\SpecFlow.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
   </Target>
-  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\packages\SpecFlow.2.4.1\build\SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.2.4.1\build\SpecFlow.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.80.0.3987.10600\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>
