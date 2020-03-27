@@ -66,8 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hooks.cs" />
-    <Compile Include="NewBookModelsPOM\ClientSignUp.cs" />
+    <Compile Include="NewBookModelsPOM\ClientSignUpPage.cs" />
+    <Compile Include="NewBookModelsPOM\ProfilePage.cs" />
     <Compile Include="NewBookModelsPOM\SignInPage.cs" />
+    <Compile Include="Steps\ProfileSteps.cs" />
     <Compile Include="Tests\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

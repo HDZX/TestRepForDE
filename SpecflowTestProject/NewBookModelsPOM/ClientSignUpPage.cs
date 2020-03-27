@@ -2,11 +2,11 @@
 
 namespace SpecflowTestProject.NewBookModelsPOM
 {
-    public class ClientSignUp
+    public class ClientSignUpPage
     {
         private readonly IWebDriver _driver;
 
-        public ClientSignUp(IWebDriver driver)
+        public ClientSignUpPage(IWebDriver driver)
         {
             _driver = driver;
         }

@@ -17,7 +17,7 @@ namespace SpecflowTestProject
         [Given(@"Client is created")]
         public void GivenClientIsCreated()
         {
-            ScenarioContext.Current["client"] = new AuthRequests().SendRequestSignUpPost(new ClientSignUpModel
+            var response = new AuthRequests().SendRequestSignUpPost(new ClientSignUpModel
             {
                 Email = "qweasd" + DateTime.Now.ToString("hhmmss") + "asd@gmail.com",
                 Password = "123qweQWE!",
@@ -25,6 +25,9 @@ namespace SpecflowTestProject
                 LastName = "asdadasdsad",
                 PhoneNumber = "1231231231"
             });
+
+            ScenarioContext.Current["client"] = response.User;
+            ScenarioContext.Current["token"] = response.TokenData.Token;
         }
 
         [Given(@"Sign in page is opened")]
@@ -56,7 +59,7 @@ namespace SpecflowTestProject
         public void ThenISuccessfullyLoggedInNewBookModelsAsCreatedClient()
         {
             Thread.Sleep(5000);
-            Assert.True(new ClientSignUp(_driver).IsFinishBtnDisplayed());
+            Assert.True(new ClientSignUpPage(_driver).IsFinishBtnDisplayed());
         }
     }
 }
